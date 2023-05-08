@@ -34,9 +34,9 @@ class Completion:
         if Completion.last_msg_id:
             options['parentMessageId'] = Completion.last_msg_id
         
-        print(prompt)
-        print()
-        print(options)
+        # print(prompt)
+        # print()
+        # print(options)
 
         requests.post(
             'https://chatbot.theb.ai/api/chat-process',

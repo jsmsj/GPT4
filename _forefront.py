@@ -196,7 +196,7 @@ class Model:
 		self._USERID: str = "user_"
 		self._CLIENT: str = client
 		self._SESSION_ID: str = sessionID
-		self.CONVERSATION_ID: [Union[str, None]] = conversationID
+		self.CONVERSATION_ID: List[Union[str, None]] = conversationID
 		self._PERSONA: str = "607e41fe-95be-497e-8e97-010a59b2e2c0"
 		self._JSON: Dict[str, str] = {}
 		self._HEADERS: Dict[str, str] = {
@@ -334,14 +334,14 @@ class Model:
 				data = json.loads(chunk.decode('utf-8').split("data: ")[1])
 				yield ForeFrontResponse(**data)
 
-		conversations: List[Dict[str, str]] = self.Conversation.GetList()
-		if self.__NAME is not None:
-			self.Conversation.Rename(conversations[-1]["id"], self.__NAME)
-			self.__NAME = None
-		else:
-			if conversations[-1]["name"].lower() == "new chat":
-				conversation: Dict[str, str] = conversations[-1]
-				self.Conversation.Rename(conversation["id"], self.Conversation.GenerateName(self._JSON["text"]))
+		# conversations: List[Dict[str, str]] = self.Conversation.GetList()
+		# if self.__NAME is not None:
+		# 	self.Conversation.Rename(conversations[-1]["id"], self.__NAME)
+		# 	self.__NAME = None
+		# else:
+		# 	if conversations[-1]["name"].lower() == "new chat":
+		# 		conversation: Dict[str, str] = conversations[-1]
+		# 		self.Conversation.Rename(conversation["id"], self.Conversation.GenerateName(self._JSON["text"]))
 				
 
 
@@ -434,7 +434,7 @@ class Email:
 		return True
 
 	@classmethod
-	def CreateAccount(self: object) -> str:
+	def CreateAccount(self: object):
 		Mail = TempMail()
 		MailAddress = Mail.GetAddress
 
