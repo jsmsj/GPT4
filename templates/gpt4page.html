@@ -132,13 +132,15 @@
             <div class="col-2 fs-6 mycol">
                 <div>
                     <h3 class="h4">Accounts:</h3>
+                    <span class="myhl">Scroll to see more accounts.</span>
                     <br>
                     <ol class="list-group list-group-numbered">
                         {% for i in acc %}
-                        <li class="list-group-item">Account {{ i[0] }} <br>(Last Used: {{ i[1] }})</li>
+                        <li class="list-group-item">Account {{ i[0] }} <br>(Used: {{ i[1] }})</li>
                         {% endfor %}
                     </ol>
                 </div>
+                <div style="height:13em;"></div>
             </div>
 
             <div class="col m-2 p-3 mycol">
@@ -184,7 +186,7 @@
 
 
     <div>
-        <div class="fixed-bottom p-2" style="background-color:#222222;">
+        <div class="fixed-bottom p-2" style="background-color:#222222; border-top: 5px solid #4b474a;">
             <div class="row justify-content-center">
                 <div class="col-6 text-center">
                     <div id="alertpopup" class="alert alert-info" style="display:none;" role="alert">
