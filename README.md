@@ -1,7 +1,7 @@
 - Uses forefront.ai for gpt-4
 - Uses theb.ai for gpt-3.5
 
-Actual Credits:
+Actual Credits For gpt4 and gpt3.5 model:
 1. [uesleibros-OpenGPT](https://github.com/uesleibros/OpenGPT)
 2. [xtekky-gpt4free](https://github.com/xtekky/gpt4free/)
 
