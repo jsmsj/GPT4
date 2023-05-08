@@ -1,7 +1,7 @@
 - Uses forefront.ai for gpt-4
 - Uses theb.ai for gpt-3.5
 
-Actual Logic Credits:
+Actual Credits:
 1. [uesleibros-OpenGPT](https://github.com/uesleibros/OpenGPT)
 2. [xtekky-gpt4free](https://github.com/xtekky/gpt4free/)
 
@@ -14,6 +14,8 @@ Actual Logic Credits:
 4. Run `pip install -r requirements.txt`
 5. Run `python main.py`
 6. Go to [localhost:5000](http://127.0.0.1:5000)
+
+> No need to create accounts manually, the script will autocreate and verify
 
 ## Note:
 For forefornt.ai has a 5 message per 3 hour limit for gpt4, so you might have to switch accounts.
