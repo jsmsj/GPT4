@@ -15,6 +15,10 @@ Actual Logic Credits:
 5. Run `python main.py`
 6. Go to [localhost:5000](http://127.0.0.1:5000)
 
+## Note:
+For forefornt.ai has a 5 message per 3 hour limit for gpt4, so you might have to switch accounts.
+
+
 ## Images:
 
 ### GPT4:
