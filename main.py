@@ -81,13 +81,23 @@ def gpt4():
         db = json.load(f)
 
     if len(db['accounts']) == 0:
-        email = ff.Email()
-        res:Any = email.CreateAccount()
-        db['accounts'].append({'client':res.client,'sessionID':res.sessionID,'last_timestamp':0})
-        with open('db.json','w') as f:
-            f.write(json.dumps(db,indent=4))
+        try:
+            email = ff.Email()
+            res:Any = email.CreateAccount()
+            db['accounts'].append({'client':res.client,'sessionID':res.sessionID,'last_timestamp':0})
+            with open('db.json','w') as f:
+                f.write(json.dumps(db,indent=4))
         
-        redirect('/gpt4')
+            def x():
+                yield 'Successfully created account!\nRefresh to see it in accounts section'
+
+            return app.response_class(x(),mimetype='text/event-stream')
+        except Exception as e:
+            print(e)
+            def x():
+                yield 'Unable to create account, retrying might help'
+
+            return app.response_class(x(),mimetype='text/event-stream')
     
     if make_new:
         try:
