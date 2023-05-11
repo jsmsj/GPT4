@@ -1,3 +1,5 @@
+## Note: Forefront module is down for now till uesleibros fix it. [Forefront added additional security it seems]
+
 - Uses forefront.ai for gpt-4
 - Uses theb.ai for gpt-3.5
 
