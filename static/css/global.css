@@ -1,0 +1,9 @@
+#prompt {
+  height: fit-content;
+  max-height: 300px;
+}
+
+#prompt:disabled {
+  background-color: rgb(50, 50, 50);
+  color: rgb(138, 138, 138);
+}

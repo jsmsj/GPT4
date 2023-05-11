@@ -144,14 +144,3 @@
   word-wrap: break-word;
   white-space: pre-line;
 }
-
-#prompt {
-  height: fit-content;
-  transition: 0.2s;
-  max-height: 300px;
-}
-
-#prompt:disabled {
-  background-color: rgb(50, 50, 50);
-  color: rgb(138, 138, 138);
-}
