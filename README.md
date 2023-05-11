@@ -1,3 +1,5 @@
+## Note: Forefront module is down for now till uesleibros fix it. [Forefront added additional security it seems]
+
 - Uses forefront.ai for gpt-4
 - Uses theb.ai for gpt-3.5
 
@@ -19,7 +21,7 @@ Actual Credits For gpt4 and gpt3.5 model:
 
 ## Note:
 For forefornt.ai has a 5 message per 3 hour limit for gpt4, so you might have to switch accounts.
-
+Join the [Discord](https://discord.gg/bDdErNVGeW) server if you face any issues.
 
 ## Images:
 
