@@ -257,7 +257,7 @@ class Model:
 		jwt_status: int = 0
 
 		while True:
-			jwt_token = self._session.post(f"https://clerk.forefront.ai/v1/client/sessions/{self._SESSION_ID}/tokens?_clerk_js_version=4.38.4", 
+			jwt_token = self._session.post(f"https://clerk.forefront.ai/v1/client/sessions/{self._SESSION_ID}/tokens?_clerk_js_version=4.39.0", 
 			headers=self._JWT_HEADERS)
 			jwt_status = jwt_token.status_code
 
@@ -273,7 +273,7 @@ class Model:
 
 	@classmethod
 	def _GetUserID(self: type) -> str:
-		DATA_: Dict[str, str] = self._session.post(f"https://clerk.forefront.ai/v1/client/sessions/{self._SESSION_ID}/touch?_clerk_js_version=4.38.4",
+		DATA_: Dict[str, str] = self._session.post(f"https://clerk.forefront.ai/v1/client/sessions/{self._SESSION_ID}/touch?_clerk_js_version=4.39.0",
 																headers=self._JWT_HEADERS).json()
 		return DATA_["response"]["user"]["id"]
 
@@ -319,7 +319,7 @@ class Model:
 
 	@classmethod
 	def IsAccountActive(self: type) -> bool:
-		return self._session.post(f"https://clerk.forefront.ai/v1/client/sessions/{self._SESSION_ID}/touch?_clerk_js_version=4.38.4", 
+		return self._session.post(f"https://clerk.forefront.ai/v1/client/sessions/{self._SESSION_ID}/touch?_clerk_js_version=4.39.0", 
 			headers=self._JWT_HEADERS).status_code == 200
 
 	@classmethod
@@ -332,7 +332,12 @@ class Model:
 		).iter_lines():
 			if b"finish_reason\":null" in chunk:
 				data = json.loads(chunk.decode('utf-8').split("data: ")[1])
+				# print(data)
 				yield ForeFrontResponse(**data)
+			# print('---------')
+			# print(chunk)
+			# print('---------')
+
 
 		# conversations: List[Dict[str, str]] = self.Conversation.GetList()
 		# if self.__NAME is not None:
@@ -445,7 +450,7 @@ class Email:
 
 		self.__logger.debug("Checking URL")
 		
-		output = self.__session.post("https://clerk.forefront.ai/v1/client/sign_ups?_clerk_js_version=4.38.4", data={"email_address": MailAddress})
+		output = self.__session.post("https://clerk.forefront.ai/v1/client/sign_ups?_clerk_js_version=4.39.0", data={"email_address": MailAddress})
 
 		if not self.__AccountState(str(output.text), "id"):
 			self.__logger.error("Failed to create account :(")
@@ -453,7 +458,7 @@ class Email:
 
 		trace_id = output.json()["response"]["id"]
 
-		output = self.__session.post(f"https://clerk.forefront.ai/v1/client/sign_ups/{trace_id}/prepare_verification?_clerk_js_version=4.38.4", 
+		output = self.__session.post(f"https://clerk.forefront.ai/v1/client/sign_ups/{trace_id}/prepare_verification?_clerk_js_version=4.39.0", 
 			data={"strategy": "email_link", "redirect_url": "https://accounts.forefront.ai/sign-up/verify"})
 
 		if not self.__AccountState(output.text, "sign_up_attempt"):
@@ -474,7 +479,7 @@ class Email:
 		r = self.__session.get(verification_url.split("\"")[0])
 		__client: str = r.cookies["__client"]
 
-		output = self.__session.get("https://clerk.forefront.ai/v1/client?_clerk_js_version=4.38.4")
+		output = self.__session.get("https://clerk.forefront.ai/v1/client?_clerk_js_version=4.39.0")
 		token: str = output.json()["response"]["sessions"][0]["last_active_token"]["jwt"]
 		sessionID: str = output.json()["response"]["last_active_session_id"]
 
