@@ -6,6 +6,7 @@ import _you as you
 from typing import Any
 from datetime import datetime, timedelta
 import time
+from json.decoder import JSONDecodeError
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret"
@@ -199,15 +200,15 @@ def gpt4():
     def stream_resp():
         content_sent = False
         # print(2)
-        # for r in forefront.SendConversation():
-        #     # print(r)
-        #     content_sent = True
-        #     yield r.choices[0].delta.content.encode()
-
-        for i in range(100):
+        for r in forefront.SendConversation():
+            # print(r)
             content_sent = True
-            yield f"{i}\n"
-            time.sleep(1)
+            yield r.choices[0].delta.content.encode()
+
+        # for i in range(100):
+        #     content_sent = True
+        #     yield f"{i}\n"
+        #     time.sleep(1)
 
         yield f"ENDENDENDENDENDREASONREASONABRAKA {content_sent}"
 
@@ -217,6 +218,58 @@ def gpt4():
     )
     with open("db.json", "w") as f:
         f.write(json.dumps(db, indent=4))
+    return app.response_class(stream_resp(), mimetype="text/event-stream")
+
+
+@app.route("/gpt4_phind")
+def gpt4page_phind():
+    return render_template("gpt4page_phind.html")
+
+
+@app.route('/utils/gpt4_phind_search',methods=['POST'])
+def phind_search_ls():
+    import _phind as ph
+    x = request.get_data().decode("utf-8")
+    data = json.loads(x)
+    # data = request.get_json()
+    prompt = data["prompt"]
+
+    try:    
+        search_resu,got_re = ph.Search().create(prompt, actualSearch = True),True
+    except JSONDecodeError:
+        print('Unable to get actual search results !!')
+        search_resu,got_re = ph.Search().create(prompt, actualSearch = False),False
+    sources_ls = []
+    if got_re:
+        sources_ls = search_resu['webPages']['value']
+
+    return jsonify({'search_results':search_resu,'sources_ls':sources_ls,'gpt_res':got_re})
+
+
+@app.route("/converse/gpt4_phind", methods=["POST"])
+def gpt4_phind():
+    import _phind as ph
+    x = request.get_data().decode("utf-8")
+    data = json.loads(x)
+    # data = request.get_json()
+    prompt = data["prompt"]
+    search_results = data['search_results']
+    
+    def stream_resp():  
+        content_sent = False
+        for ress in ph.StreamingCompletion.create(
+            model  = 'gpt-4',
+            prompt = prompt,
+            results     = search_results, 
+            creative    = False,
+            detailed    = True,
+            codeContext = ''):
+
+            content_sent = True
+            yield ress.completion.choices[0].text
+
+        yield f"ENDENDENDENDENDREASONREASONABRAKA {content_sent}"
+
     return app.response_class(stream_resp(), mimetype="text/event-stream")
 
 
