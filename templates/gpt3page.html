@@ -333,8 +333,10 @@
             }),
           }
         );
+
         const reader = await response.body.getReader();
 
+        promptInput.value = "";
         subBtn.disabled = false;
         promptInput.disabled = false;
 
