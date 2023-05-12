@@ -249,7 +249,6 @@
       var subBtn = document.getElementById("sub");
       var promptInput = document.getElementById("prompt");
       var responseDiv = document.getElementById("response");
-      var chatbar = document.getElementById("chatbar");
       const markdown = window.markdownit();
 
       function formatDateTime() {
@@ -319,7 +318,7 @@
 
         responseDiv.innerHTML += `<div class="d-flex flex-row justify-content-end">
                                                 <div>
-                                                    <p class="small p-2 me-3 mb-1 text-white rounded-3 " style="background-color: #335a61;">${
+                                                    <p class="small p-2 me-3 mb-1 text-white rounded-3 usermsg" style="background-color: #335a61;">${
                                                       promptInput.value
                                                     }</p>
                                                     <p class="small me-3 mb-3 rounded-3 text-muted">${formatDateTime()}
