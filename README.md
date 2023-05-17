@@ -7,6 +7,14 @@ Actual Credits For gpt4 and gpt3.5 model:
 1. [uesleibros-OpenGPT](https://github.com/uesleibros/OpenGPT)
 2. [xtekky-gpt4free](https://github.com/xtekky/gpt4free/)
 
+# Available Models:
+1. Forefront (GPT4) [Down right now]
+2. Theb.ai (GPT3.5)
+3. Poe (GPT4)
+4. You (GPT4)
+5. Phind (GPT4)
+6. Google Bard
+
 ## Use gpt-4 and gpt-3.5 for free while it lasts.
 
 ## How to run ?
