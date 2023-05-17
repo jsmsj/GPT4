@@ -10,7 +10,7 @@ Actual Credits For gpt4 and gpt3.5 model:
 # Available Models:
 1. Forefront (GPT4) [Down right now]
 2. Theb.ai (GPT3.5)
-3. Poe (GPT4)
+3. Poe (GPT4) [Tokens by [Lomusire](https://discord.gg/v5mqTMjmFn)]
 4. You (GPT4)
 5. Phind (GPT4)
 6. Google Bard
