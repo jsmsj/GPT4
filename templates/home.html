@@ -23,7 +23,42 @@
 
         .button-container:hover {
             background-color: rgb(65, 62, 62);
+            background-image: none;
         }
+
+        /* .backimg {
+            position: relative;
+        }
+
+        .backimg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.25);
+            /* Adjust the color and alpha value */
+        } */
+
+        /* .ff{
+            background-image: url('./../static/assets/ff.png');
+        }
+        .poe{
+            background-image: url('./../static/assets/poe.png');
+        }
+        .bard{
+            background-image: url('./../static/assets/bard.png');
+        }
+        .thebai{
+            background-image: url('./../static/assets/thebai.png');
+        }
+        .you{
+            background-image: url('./../static/assets/you.png');
+        }
+        .phind{
+            background-image: url('./../static/assets/phind.png');
+        } */
     </style>
 </head>
 
@@ -56,21 +91,24 @@
 
     <div class="container-fluid">
         <div class="row full-height">
-            <div class="col-md-6 button-container" onclick="handleButtonClick(1)">
+            <div class="col-md-4 button-container backimg ff" onclick="handleButtonClick(1)">
                 <h2>GPT-4 (Forefront)</h2>
             </div>
-            <div class="col-md-6 button-container" onclick="handleButtonClick(2)">
+            <div class="col-md-4 button-container backimg thebai" onclick="handleButtonClick(2)">
                 <h2>GPT-3.5-Turbo</h2>
+            </div>
+            <div class="col-md-4 button-container backimg poe" onclick="handleButtonClick(6)">
+                <h2>GPT-4 (Poe)</h2>
             </div>
         </div>
         <div class="row full-height">
-            <div class="col-md-4 button-container" onclick="handleButtonClick(3)">
+            <div class="col-md-4 button-container backimg you" onclick="handleButtonClick(3)">
                 <h2>GPT-4 (You)</h2>
             </div>
-            <div class="col-md-4 button-container" onclick="handleButtonClick(4)">
+            <div class="col-md-4 button-container backimg phind" onclick="handleButtonClick(4)">
                 <h2>GPT-4 (Phind)</h2>
             </div>
-            <div class="col-md-4 button-container" onclick="handleButtonClick(5)">
+            <div class="col-md-4 button-container backimg bard" onclick="handleButtonClick(5)">
                 <h2>Google Bard</h2>
             </div>
         </div>
@@ -91,9 +129,12 @@
             } else if (buttonId === 4) {
 
                 window.location.href = '{{url_for("gpt4page_phind")}}'
-            } else if (buttonId === 4) {
+            } else if (buttonId === 5) {
 
                 window.location.href = '{{url_for("gpt4page_bard")}}'
+            } else if (buttonId === 6) {
+
+                window.location.href = '{{url_for("gpt4page_poe")}}'
             }
         }
     </script>

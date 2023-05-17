@@ -8,8 +8,12 @@ from datetime import datetime, timedelta
 from urllib.parse import quote as urlparse
 from json.decoder import JSONDecodeError
 import requests
+import poe
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+import logging
+poe.logger.setLevel(logging.INFO)
+import time
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret"
@@ -297,6 +301,41 @@ def gpt4_bard():
 
     return jsonify({'response':response.content.decode()})
 
+
+@app.route('/gpt4_poe')
+def gpt4page_poe():
+    return render_template('gpt4page_poe.html')
+
+first_time_poe = True
+
+@app.route('/converse/gpt4_poe',methods=['POST'])
+def gpt4_poe():
+    data = json.loads(request.get_data().decode("utf-8"))
+    prompt = data["prompt"]
+    with open('db_poe.json') as f:
+        last_id = json.load(f)['last_idx']
+    token = requests.get('https://gist.githubusercontent.com/jsmsj/03eb084a298eb5cc2abb0c573383fbfc/raw/7aef974ab67404a47eb7942524feee9d33c45c21/poe.txt').content.decode('utf-8').split('\n')[last_id]
+
+    client = poe.Client(token)
+    # #{'capybara': 'Sage', 'beaver': 'GPT-4', 'a2_2': 'Claude+', 'a2': 'Claude', 'chinchilla': 'ChatGPT', 'nutria': 'Dragonfly'}
+
+    def stream_resp():  
+        content_sent = False
+        try:
+            for chunk in client.send_message("beaver", prompt):
+                content_sent = True
+                yield chunk["text_new"]
+        except RuntimeError as e:
+            print(e)
+            content_sent = True
+            yield 'Daily limit reached for GPT4 with this account. switching the account.... Please resend your query'
+            time.sleep(0.1)
+            with open('db_poe.json','w') as f:
+                f.write(json.dumps({'last_idx':last_id+1}))
+
+        yield f"ENDENDENDENDENDREASONREASONABRAKA {content_sent}"
+
+    return app.response_class(stream_resp(), mimetype="text/event-stream")
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
