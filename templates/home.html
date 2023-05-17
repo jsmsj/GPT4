@@ -64,13 +64,17 @@
             </div>
         </div>
         <div class="row full-height">
-            <div class="col-md-6 button-container" onclick="handleButtonClick(3)">
+            <div class="col-md-4 button-container" onclick="handleButtonClick(3)">
                 <h2>GPT-4 (You)</h2>
             </div>
-            <div class="col-md-6 button-container" onclick="handleButtonClick(4)">
+            <div class="col-md-4 button-container" onclick="handleButtonClick(4)">
                 <h2>GPT-4 (Phind)</h2>
             </div>
+            <div class="col-md-4 button-container" onclick="handleButtonClick(5)">
+                <h2>Google Bard</h2>
+            </div>
         </div>
+
     </div>
 
     <script>
@@ -86,7 +90,10 @@
                 window.location.href = '{{url_for("gpt4page_you")}}'
             } else if (buttonId === 4) {
 
-            window.location.href = '{{url_for("gpt4page_phind")}}'
+                window.location.href = '{{url_for("gpt4page_phind")}}'
+            } else if (buttonId === 4) {
+
+                window.location.href = '{{url_for("gpt4page_bard")}}'
             }
         }
     </script>

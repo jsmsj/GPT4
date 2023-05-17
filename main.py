@@ -5,8 +5,11 @@ import json
 import _you as you
 from typing import Any
 from datetime import datetime, timedelta
-import time
+from urllib.parse import quote as urlparse
 from json.decoder import JSONDecodeError
+import requests
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret"
@@ -271,6 +274,28 @@ def gpt4_phind():
         yield f"ENDENDENDENDENDREASONREASONABRAKA {content_sent}"
 
     return app.response_class(stream_resp(), mimetype="text/event-stream")
+
+@app.route('/gpt4_bard')
+def gpt4page_bard():
+    return render_template('gpt4page_bard.html')
+
+@app.route('/converse/gpt4_bard',methods=['POST'])
+def gpt4_bard():
+    data = json.loads(request.get_data().decode("utf-8"))
+    prompt = data["prompt"]
+
+    url = f"https://gpt4free.crispypiez.repl.co/?prompt={urlparse(prompt,safe='')}&model=bard"
+
+    headers = {
+    'authority': 'gpt4free.crispypiez.repl.co',
+    'Origin': 'gpt4free.crispypiez.repl.co',
+    'Referer': 'gpt4free.crispypiez.repl.co',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36'
+    }
+
+    response = requests.get(url, headers=headers,verify=False)
+
+    return jsonify({'response':response.content.decode()})
 
 
 if __name__ == "__main__":
