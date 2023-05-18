@@ -1,0 +1,105 @@
+.full-height {
+  height: 45vh;
+}
+
+.container-fluid {
+  display: grid;
+  width: 100%;
+  height: 90vh;
+  /* Home page buttons grid size changer*/
+
+  /* Horizontal */
+  grid-template-columns: repeat(3, 1fr);
+  /* Vertical */
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.button-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* transition: background-color 0.3s ease; */
+  border-radius: 30px;
+
+}
+
+.backimg {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 125%;
+
+  background-position: center center;
+  z-index: 10;
+  transition: all 0.2s;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition: all 0.2s;
+  border-radius: 30px;
+
+}
+
+.backimg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+  border-radius: 30px;
+
+}
+
+.backimg h2 {
+  text-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+.backimg:hover {
+  background-size: 100%;
+  border-radius: 10px;
+
+}
+
+.backimg:hover::before {
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+
+}
+
+.backimg h2 {
+  color: white;
+  z-index: 100;
+  transition: 0.2s;
+}
+
+.button-container:hover h2 {
+  opacity: 1;
+  font-size: 35px;
+}
+
+.ff {
+  background-image: url("../assets/ff.png");
+}
+
+.poe {
+  background-image: url("../assets/poe.png");
+}
+
+.bard {
+  background-image: url("../assets/bard.png");
+}
+
+.thebai {
+  background-image: url("../assets/thebai.png");
+}
+
+.you {
+  background-image: url("../assets/you.png");
+}
+
+.phind {
+  background-image: url("../assets/phind.png");
+}
