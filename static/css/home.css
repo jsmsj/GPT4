@@ -18,6 +18,8 @@
   align-items: center;
   cursor: pointer;
   /* transition: background-color 0.3s ease; */
+  border-radius: 30px;
+
 }
 
 .backimg {
@@ -30,7 +32,8 @@
   transition: all 0.2s;
   transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   -webkit-transition: all 0.2s;
-  border-radius: 20px;
+  border-radius: 30px;
+
 }
 
 .backimg::before {
@@ -41,7 +44,9 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  transition: 0.1s;
+  transition: 0.2s;
+  border-radius: 30px;
+
 }
 
 .backimg h2 {
@@ -50,10 +55,14 @@
 
 .backimg:hover {
   background-size: 100%;
+  border-radius: 10px;
+
 }
 
 .backimg:hover::before {
   background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+
 }
 
 .backimg h2 {
