@@ -314,7 +314,7 @@ def gpt4_poe():
     prompt = data["prompt"]
     with open('db_poe.json') as f:
         last_id = json.load(f)['last_idx']
-    token = requests.get('https://gist.githubusercontent.com/jsmsj/03eb084a298eb5cc2abb0c573383fbfc/raw/7aef974ab67404a47eb7942524feee9d33c45c21/poe.txt').content.decode('utf-8').split('\n')[last_id]
+    token = requests.get('https://gist.githubusercontent.com/jsmsj/03eb084a298eb5cc2abb0c573383fbfc/raw/9b73742fbb7074de4b55c850b08c904f65632dca/poe.txt').content.decode('utf-8').split('\n')[last_id]
 
     client = poe.Client(token)
     # #{'capybara': 'Sage', 'beaver': 'GPT-4', 'a2_2': 'Claude+', 'a2': 'Claude', 'chinchilla': 'ChatGPT', 'nutria': 'Dragonfly'}
