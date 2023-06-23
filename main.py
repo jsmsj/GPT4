@@ -77,13 +77,13 @@ def gpt4_you():
     response = you.Completion.create(
         prompt=prompt, chat=chat, include_links=True, detailed=True, debug=False
     )
-
+    
     db["gpt4youchat"].append({"question": prompt, "answer": response.text})
-
+   
     with open("db_you.json", "w") as f:
         f.write(json.dumps(db, indent=4))
 
-    return jsonify({"response": str(response.text)})
+    return jsonify({"response": bytes(str(response.text), 'utf-8').decode('unicode_escape')})
 
 
 @app.route("/gpt3")
